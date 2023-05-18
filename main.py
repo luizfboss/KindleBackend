@@ -7,3 +7,22 @@ Split the content in each page, including title at the top of each page, and the
 ------------------------------------------------------------------------
 All my reasoning and logic behind this project can be found in the "sketch.pdf" file in this repository.
 """
+
+from book import Book
+
+# Testing 
+first_book = Book("lorem ipsum", open("test.txt"))
+
+# print(first_book.title)
+# print(first_book.content)
+
+print(first_book.GetNumberOfPages())
+
+print(first_book.DisplayPage())
+
+while first_book.number_of_pages > first_book.current_page+1:
+    first_book.Forward()
+
+
+while first_book.current_page > 0:
+    first_book.Rewind()
