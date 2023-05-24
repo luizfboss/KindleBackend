@@ -1,10 +1,11 @@
 class Book:
   def __init__(self, title, content):
       self.title = title
-      self.book_file = content.read().strip()
+      self.book_file = content.strip()
       self.content = [self.book_file[i:i+200].strip() for i in range(0, len(self.book_file), 200)]
       self.number_of_pages = len(self.content)
       self.current_page = 0
+      self.percentage_read = int(self.current_page / self.number_of_pages * 100)
 
   
   def GetTitle(self):
@@ -18,6 +19,9 @@ class Book:
   
   def GetNumberOfPages(self):
     return self.number_of_pages
+  
+  def GetPercentageRead(self):
+    return self.percentage_read
   
   def DisplayPage(self):
       print("\n")
