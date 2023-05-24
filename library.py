@@ -1,4 +1,3 @@
-from database import all_books
 from book import Book
 
 class Library(Book):
