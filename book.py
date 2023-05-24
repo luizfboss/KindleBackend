@@ -1,46 +1,70 @@
 class Book:
   def __init__(self, title, content):
-      self.title = title
-      self.book_file = content.strip()
-      self.content = [self.book_file[i:i+200].strip() for i in range(0, len(self.book_file), 200)]
-      self.number_of_pages = len(self.content)
-      self.current_page = 0
-      self.percentage_read = int(self.current_page / self.number_of_pages * 100)
+      self.__title = title
+      self.__book_file = content.read().strip()
+      self.__content = [self.__book_file[i:i+200].strip() for i in range(0, len(self.__book_file), 200)]
+      self.__number_of_pages = len(self.__content)
+      self.__current_page = 0
+      self.__percentage_read = int((self.__current_page / self.__number_of_pages) * 100)
 
-  
+
+  # Getter Functions
   def GetTitle(self):
-    return self.title
+    return self.__title
   
   def GetContent(self):
-    return self.content
+    return self.__content
   
   def GetCurrentPage(self):
-    return self.current_page
+    return self.__current_page
   
   def GetNumberOfPages(self):
-    return self.number_of_pages
+    return self.__number_of_pages
   
   def GetPercentageRead(self):
-    return self.percentage_read
+    return self.__percentage_read
   
   def DisplayPage(self):
       print("\n")
       print(self.GetTitle())
-      print(self.content[self.current_page])
-      print(self.GetCurrentPage() + 1)
+      print(self.__content[self.GetCurrentPage()])
+      print(self.GetCurrentPage())
       return ""
+  
+  # Setters
+  def SetPecentageRead(self):
+    self.__percentage_read = int((self.GetCurrentPage() / self.GetNumberOfPages()) * 100)
 
+  def SetCurrentPage(self, action):
+    if action == "+":
+      self.__current_page += 1
+    else:
+      self.__current_page -= 1
 
   def Forward(self):
-    if self.current_page == self.number_of_pages - 1:
+    if self.GetCurrentPage() == self.__number_of_pages - 1:
       print("THE END! You've reached the last page of the book!")
     else:
-      self.current_page += 1
+      self.SetCurrentPage("+")
       self.DisplayPage()
 
   def Rewind(self):
-    if self.current_page == 0:
+    if self.GetCurrentPage() == 0:
       print("You've already reached the first page.")
     else:
-      self.current_page -= 1
+      self.SetCurrentPage("-")
       self.DisplayPage()
+
+
+  # Should I format the object as a dictionary to add it to the "books" list in
+  # Library? YES! This solved many problems in the process. Right now, I don't know 
+  # any other way of storing an object, as a dictionary, in a list from another 
+  # class. This was the only solution I came up with.
+  def FormatBook(self):
+    return {
+      "Title": self.GetTitle(),
+      "Content": self.GetContent(),
+      "Number_of_pages": self.GetNumberOfPages(),
+      "Current_page": self.GetCurrentPage(),
+      "Percentage_read": self.GetPercentageRead()
+    }

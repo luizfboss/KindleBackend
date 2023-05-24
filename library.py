@@ -7,11 +7,18 @@ class Library(Book):
         self.current_book = None   
 
     def Home(self):
+        print('=-'*20)
+        print("\n")
+        print("HOME PAGE")
+        print("Welcome back!")
+        print()
         # Display all books and percentage read
         # Template:
         # <BOOK NAME> - <PERCENTAGE READ>
         for book in self.books:
-            print(f"{book['Title']} - {book['percentage_read']}%")
+            print(f"{book['Title']} - {book['Percentage_read']}%")
+        print("\n")
+        print('=-'*20)
 
     def Select(self, title):
         for book in self.books:
@@ -19,7 +26,7 @@ class Library(Book):
                 book['content'][Book.GetCurrentPage()]
 
     def AddBook(self, title, content):
-        self.books.append(Book(title, content))
+        self.books.append(Book(title, content).FormatBook())
 
     def RemoveBook(self, title):
         for book in self.books:
@@ -27,8 +34,3 @@ class Library(Book):
                 self.books.remove(book)
                 print("The Book has been successfully removed!")
         print("This book does not exist in your library.")
-
-
-my_library = Library()
-
-my_library.AddBook("elel", "fsdjvbnsfedvhfjdebgnvsdfklgjbnsdfgkldjgbnzlkjdxfnvbdlkjrfnasdlkujdnvlskjanal;uvbjnal;gvabjnka;lskgjnvasdf;gvbklfjanvbdfsl;vkasdnmvdsl;sdknvmkljsfgbnsadfilvujdfnvlakvjsdbnvlksdfjvbnsdflkvsdfnvlksdfjvnsdlkvsdjnvlsdfkjvnsdklvsdfjnvsdfkljvnsdflvksdjnvsdlkjdvnfkvjsdfnvlsdjkvnsd")
