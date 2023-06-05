@@ -4,8 +4,8 @@ class Book:
       self.__book_file = content.read().strip()
       self.__content = [self.__book_file[i:i+200].strip() for i in range(0, len(self.__book_file), 200)]
       self.__number_of_pages = len(self.__content)
-      self.__current_page = 0
-      self.__percentage_read = int((self.__current_page / self.__number_of_pages) * 100)
+      self.__current_page = 1
+      self.__percentage_read = 0
 
 
   # Getter Functions
@@ -16,25 +16,27 @@ class Book:
     return self.__content
   
   def GetCurrentPage(self):
-    return self.__current_page
+    return self.__current_page + 1
   
   def GetNumberOfPages(self):
     return self.__number_of_pages
   
   def GetPercentageRead(self):
-    return self.__percentage_read
+    return int((self.GetCurrentPage() / self.GetNumberOfPages()) * 100)
   
   def DisplayPage(self):
       print("\n")
       print(self.GetTitle())
-      print(self.__content[self.GetCurrentPage()])
+      print(self.__content[self.GetCurrentPage() - 1])
       print(self.GetCurrentPage())
       return ""
   
-  # Setters
-  def SetPecentageRead(self):
-    self.__percentage_read = int((self.GetCurrentPage() / self.GetNumberOfPages()) * 100)
 
+  # Setters
+  def SetPecentageRead(self, new_percentage):
+    self.__percentage_read = new_percentage
+
+  # This works with both Rewind and Forward functions 
   def SetCurrentPage(self, action):
     if action == "+":
       self.__current_page += 1
@@ -47,6 +49,7 @@ class Book:
     else:
       self.SetCurrentPage("+")
       self.DisplayPage()
+    return ""
 
   def Rewind(self):
     if self.GetCurrentPage() == 0:
@@ -54,7 +57,7 @@ class Book:
     else:
       self.SetCurrentPage("-")
       self.DisplayPage()
-
+    return ""
 
   # Should I format the object as a dictionary to add it to the "books" list in
   # Library? YES! This solved many problems in the process. Right now, I don't know 
