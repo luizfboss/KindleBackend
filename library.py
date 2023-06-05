@@ -36,6 +36,15 @@ class Library(Book): # CHECK IF INHERITANCE IS NECESSARY
         print("\n")
         print("HOME PAGE")
 
+
+        # Rewriting attributes in Library (array of objects) -> STILL NEEDS TESTING
+        if self.current_book:
+            for book in self.books:
+                if self.current_book.GetTitle() == book['Title']:
+                    book['Percentage_read'] = self.current_book.GetPercentageRead()
+                    book['Current_page'] = self.current_book.GetCurrentPage()
+
+
         if len(self.books) == 0:
             print("Welcome!")
             print("\n")
