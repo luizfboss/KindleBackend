@@ -16,13 +16,17 @@ class Book:
     return self.__content
   
   def GetCurrentPage(self):
-    return self.__current_page + 1
+    return self.__current_page
   
   def GetNumberOfPages(self):
     return self.__number_of_pages
   
   def GetPercentageRead(self):
-    return int((self.GetCurrentPage() / self.GetNumberOfPages()) * 100)
+    # Setting initial percentage read to 0%.
+    if self.GetCurrentPage() <= 1:
+      return 0 
+    else: 
+      return int((self.GetCurrentPage() / self.GetNumberOfPages()) * 100)
   
   def DisplayPage(self):
       print("\n")
@@ -30,18 +34,19 @@ class Book:
       print(self.__content[self.GetCurrentPage() - 1])
       print(self.GetCurrentPage())
       return ""
-  
 
   # Setters
-  def SetPecentageRead(self, new_percentage):
+  def SetPercentageRead(self, new_percentage): 
     self.__percentage_read = new_percentage
 
   # This works with both Rewind and Forward functions 
   def SetCurrentPage(self, action):
     if action == "+":
       self.__current_page += 1
-    else:
+    elif action == "-":
       self.__current_page -= 1
+    else:
+      self.__current_page = action
 
   def Forward(self):
     if self.GetCurrentPage() == self.__number_of_pages - 1:
@@ -59,15 +64,19 @@ class Book:
       self.DisplayPage()
     return ""
 
+
+  # The following function was created for testing purposes only. Please ignore it.
+
+
   # Should I format the object as a dictionary to add it to the "books" list in
   # Library? YES! This solved many problems in the process. Right now, I don't know 
   # any other way of storing an object, as a dictionary, in a list from another 
   # class. This was the only solution I came up with.
-  def FormatBook(self):
-    return {
-      "Title": self.GetTitle(),
-      "Content": self.GetContent(),
-      "Number_of_pages": self.GetNumberOfPages(),
-      "Current_page": self.GetCurrentPage(),
-      "Percentage_read": self.GetPercentageRead()
-    }
+  # def FormatBook(self):
+  #   return {
+  #     "Title": self.GetTitle(),
+  #     "Content": self.GetContent(),
+  #     "Number_of_pages": self.GetNumberOfPages(),
+  #     "Current_page": self.GetCurrentPage(),
+  #     "Percentage_read": self.GetPercentageRead()
+  #   }

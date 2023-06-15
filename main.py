@@ -34,6 +34,7 @@ from book import Book
 
 
 my_library = Library()
+
 # Downloading books in the Library
 # Displaying downloaded books
 # print(my_library.books)
@@ -43,10 +44,13 @@ my_library.Home()
 
 my_library.AddBook("The Story of Lore Ipsum", open("The Story of Lore Ipsum.txt"))
 
+print(my_library.books[0].GetCurrentPage())
+
 my_library.Home()
 
 # Testing Select
 my_library.Select("The Story of Lore Ipsum")
+
 
 # TESTING CURRENT BOOK VARIABLE AND BOOK METHODS TOGETHER
 # WORKING PERFECTLY FINE 
@@ -56,21 +60,34 @@ my_library.Select("The Story of Lore Ipsum")
 # print(my_library.current_book.GetCurrentPage())
 # print(my_library.current_book.GetNumberOfPages())
 # print(my_library.current_book.GetPercentageRead())
-# print(my_library.current_book.DisplayPage())
+# print(my_library.current_book.DisplayPage()
 
+print(my_library.current_book.DisplayPage()) # Page 1
+print(my_library.current_book.GetCurrentPage())
+print(my_library.current_book.Forward()) # Page 2
+print(my_library.current_book.Forward()) # Page 3
+print(my_library.current_book.Rewind()) # Page 2
 
-# print(my_library.current_book.DisplayPage())
-# print(my_library.current_book.Forward())
-# print(my_library.current_book.Forward())
-# print(my_library.current_book.Rewind())
+print(my_library.current_book.Forward()) # Page 3 
+print(my_library.current_book.Forward()) # Page 4 
+print(my_library.current_book.Forward()) # Page 5
+print(my_library.current_book.Forward()) # Page 6
+print(my_library.current_book.Forward()) # Page 7
+print(my_library.current_book.Forward()) # Page 8
+print(my_library.current_book.Forward()) # Page 9
+print(my_library.current_book.Forward()) # Page 10
 
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
-print(my_library.current_book.Forward())
+# print(my_library.current_book.GetCurrentPage())
+
+my_library.Home()
+
+my_library.Select("The Story of Lore Ipsum")
+print(my_library.current_book.Forward()) # Page 11
+print(my_library.current_book.Forward()) # Page 12
+print(my_library.current_book.Forward()) # Page 13
+print(my_library.current_book.Forward()) # Page 14
 
 print(my_library.current_book.GetPercentageRead())
+print(my_library.current_book.GetNumberOfPages())
+
+my_library.Home()

@@ -8,25 +8,21 @@ class Library(Book): # CHECK IF INHERITANCE IS NECESSARY
     def Select(self, title):
         try: 
             for book in self.books:
-                if book['Title'] == title:
-                    self.current_book = Book(book['Title'], open(f"{book['Title']}.txt"))
+                if book.GetTitle() == title:
+                    self.current_book = Book(book.GetTitle(), open(f"{book.GetTitle()}.txt"))
                     # Set values 
-                    self.current_book.SetCurrentPage(book['Current_page'])
-                    self.current_book.SetPecentageRead(book['Percentage_read'])
+                    self.current_book.SetCurrentPage(book.GetCurrentPage())
+                    self.current_book.SetPercentageRead(book.GetPercentageRead())
                     print("The book has been selected successfully!")
         except TypeError:
             print("Oops! That was no valid title. Try again.")
 
-    def RewriteBook(self):
-        pass
-
-
     def AddBook(self, title, content):
-        self.books.append(Book(title, content).FormatBook())
+        self.books.append(Book(title, content))
 
     def RemoveBook(self, title):
         for book in self.books:
-            if book['Title'] == title:
+            if book.GetTitle() == title:
                 self.books.remove(book)
                 print("The Book has been successfully removed!")
         print("This book does not exist in your library.")
@@ -40,9 +36,10 @@ class Library(Book): # CHECK IF INHERITANCE IS NECESSARY
         # Rewriting attributes in Library (array of objects) -> STILL NEEDS TESTING
         if self.current_book:
             for book in self.books:
-                if self.current_book.GetTitle() == book['Title']:
-                    book['Percentage_read'] = self.current_book.GetPercentageRead()
-                    book['Current_page'] = self.current_book.GetCurrentPage()
+                if self.current_book.GetTitle() == book.GetTitle():
+                    book.SetPercentageRead(self.current_book.GetPercentageRead())
+                    book.SetCurrentPage(self.current_book.GetCurrentPage())
+                    self.current_book = None # Resetting current book for future use
 
 
         if len(self.books) == 0:
@@ -66,6 +63,6 @@ class Library(Book): # CHECK IF INHERITANCE IS NECESSARY
             #             book['Current_page'] = self.current_book.GetCurrentPage()
 
             for book in self.books:
-                print(f"{book['Title']} - {book['Percentage_read']}%")
+                print(f"{book.GetTitle()} - {book.GetPercentageRead()}%")
             print("\n")
             print('=-'*20) 
