@@ -1,10 +1,16 @@
 """
-PROMPT: Create a reading software, like Kindle, that shows some content on each page, 
-the user to move back and forth, add and remove books. 
+-------------------------------------------------------------------------------------------------
+PROMPT: Create a reading software, like Kindle. 
+Some features must be included, such as:
+ - allow the user to go to next/previous pages
+ - add and remove books from the library
+ - change current book. If the user is reading one book and they are not done but they want to read another book, save the progress of that current book dinamically, and switch the current book.
 
-Split the content in each page, including title at the top of each page, and the page number at the bottom.
-
-------------------------------------------------------------------------
+The content in each page must include: 
+ - title, at the top of each page
+ - text, in the middle of the page
+ - the page number, at the bottom.
+-------------------------------------------------------------------------------------------------
 All my reasoning and logic behind this project can be found in the "sketch.pdf" file in this repository.
 """
 
@@ -89,5 +95,29 @@ print(my_library.current_book.Forward()) # Page 14
 
 print(my_library.current_book.GetPercentageRead())
 print(my_library.current_book.GetNumberOfPages())
+
+my_library.Home()
+
+
+my_library.AddBook("The Tides of Destiny", open("The Tides of Destiny.txt"))
+
+my_library.Home()
+
+my_library.Select("The Tides of Destiny")
+
+my_library.current_book.DisplayPage()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
+
+my_library.Home()
+
+my_library.Select("The Tides of Destiny")
+my_library.current_book.DisplayPage()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
+my_library.current_book.Forward()
 
 my_library.Home()

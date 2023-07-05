@@ -35,6 +35,7 @@ class Book:
       print(self.GetCurrentPage())
       return ""
 
+
   # Setters
   def SetPercentageRead(self, new_percentage): 
     self.__percentage_read = new_percentage
@@ -66,12 +67,6 @@ class Book:
 
 
   # The following function was created for testing purposes only. Please ignore it.
-
-
-  # Should I format the object as a dictionary to add it to the "books" list in
-  # Library? YES! This solved many problems in the process. Right now, I don't know 
-  # any other way of storing an object, as a dictionary, in a list from another 
-  # class. This was the only solution I came up with.
   # def FormatBook(self):
   #   return {
   #     "Title": self.GetTitle(),
